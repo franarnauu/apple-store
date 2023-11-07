@@ -1,0 +1,197 @@
+body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+header {
+    background-color: #141414;
+    color: white;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    /* Evita el desbordamiento horizontal */
+    overflow: hidden;
+    /* Oculta el contenido desbordado */
+}
+
+.logo img {
+    height: 40px;
+    /* Ajusta la altura del logo según tu preferencia */
+    margin-left: 20px;
+    /* Espacio entre el logo y el borde izquierdo */
+}
+
+.search-bar {
+    width: 20%;
+    padding: 10px;
+    margin-right: 20px;
+    /* Espacio entre la barra de búsqueda y el borde derecho */
+    display: flex;
+    /* Añade un espacio entre el logo y la barra de búsqueda */
+    justify-content: space-between;
+    /* Distribuye el espacio entre el logo y la barra de búsqueda */
+    align-items: center;
+    /* Centra verticalmente la barra de búsqueda */
+}
+
+.search-bar input {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #444;
+    font-size: 16px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.products {
+    flex: 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.product {
+    border: 1px solid #ddd;
+    background-color: white;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+    max-width: 300px;
+    padding: 20px;
+    margin: 10px;
+}
+
+.product:hover {
+    transform: scale(1.03);
+}
+
+.product h3 {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.product p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.product img {
+    max-width: 100%;
+    height: auto;
+}
+
+.cart {
+    flex: 1;
+    border: 1px solid #ddd;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+#search {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid grey;
+    font-size: 16px;
+}
+
+#cart-items li {
+    list-style: none;
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.cart-total {
+    text-align: right;
+    font-size: 20px;
+}
+
+.product button {
+    background-color: grey;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.product button:hover {
+    background-color: #333;
+}
+
+.cart li button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.cart li button:hover {
+    background-color: #444;
+}
+
+/* Estilos para la notificación */
+.notification {
+    position: fixed;
+    top: -100px;
+    /* Inicialmente oculta fuera de la pantalla */
+    right: 20px;
+    /* Margen derecho */
+    background-color: #2ecc71;
+    /* Color de fondo */
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    /* Bordes redondeados */
+    transition: transform 0.3s, opacity 0.3s;
+    opacity: 0;
+}
+
+.notification.show {
+    top: 20px;
+    /* Muestra la notificación desde arriba */
+    opacity: 1;
+    animation: fadeOutUp 0.3s ease-in-out 1s forwards;
+    /* Aplica la animación al salir */
+}
+
+@keyframes fadeOutUp {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+        /* Se desplaza hacia arriba al salir */
+    }
+}
