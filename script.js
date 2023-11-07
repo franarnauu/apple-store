@@ -15,29 +15,6 @@ const productsData = [
     { id: 13, name: 'AirPods Pro (2ª generación)', price: 299, image: 'assets/images/airpods_pro.webp' }
 ];
 
-// Mostrar notificación
-function showNotification(productName) {
-    const notification = document.createElement('div');
-    notification.classList.add('notification');
-    notification.textContent = `Agregaste "${productName}" al carrito!`;
-
-    notificationContainer.appendChild(notification);
-
-    // Desaparecer la notificación después de 2 segundos
-    setTimeout(() => {
-        notification.classList.remove('show');
-        setTimeout(() => {
-            notificationContainer.removeChild(notification);
-        }, 300); // Espera 0.3 segundos antes de eliminarla
-    }, 2000);
-
-    // Agrega la clase para mostrar la notificación
-    setTimeout(() => {
-        notification.classList.add('show');
-    }, 10); // Espera 0.01 segundos antes de mostrarla
-}
-
-
 // Agregar el contenedor de notificaciones al cuerpo del documento
 const body = document.querySelector('body');
 const notificationContainer = document.createElement('div');
@@ -83,6 +60,27 @@ function searchProducts() {
     }
 }
 
+// Función para mostrar notificación
+function showNotification(message, isRemoval = false) {
+    const notification = document.createElement('div');
+    notification.classList.add('notification', isRemoval ? 'removal' : 'addition');
+    notification.textContent = message;
+
+    notificationContainer.appendChild(notification);
+
+    // Desaparecer la notificación después de 2 segundos
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            notificationContainer.removeChild(notification);
+        }, 300); // Espera 0.3 segundos antes de eliminarla
+    }, 2000);
+
+    // Agrega la clase para mostrar la notificación
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 10); // Espera 0.01 segundos antes de mostrarla
+}
 
 // Función para agregar productos al carrito
 function addToCart(productId) {
@@ -105,7 +103,7 @@ function addToCart(productId) {
         updateCartDisplay();
 
         // Mostrar notificación
-        showNotification(product.name);
+        showNotification(`Agregaste "${product.name}" al carrito!`);
     }
 }
 
@@ -115,6 +113,12 @@ function removeFromCart(productId) {
     const updatedCart = cartItems.filter(item => item.id !== productId);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
     updateCartDisplay();
+
+    // Encuentra el producto eliminado por su ID
+    const removedProduct = productsData.find(item => item.id === productId);
+
+    // Mostrar notificación
+    showNotification(`Eliminaste "${removedProduct.name}" del carrito`, true);
 }
 
 // Función para actualizar la visualización del carrito
@@ -139,13 +143,10 @@ function updateCartDisplay() {
     cartTotal.textContent = `Total del carrito: $${total}`;
 }
 
-// Carga inicial de productos
-displayProducts(productsData);
-
-
 // Event listener para búsqueda
 const searchInput = document.getElementById('search');
 searchInput.addEventListener('input', searchProducts);
 
 // Carga inicial del carrito y actualización de carrito
 updateCartDisplay();
+

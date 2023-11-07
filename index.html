@@ -5,34 +5,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apple</title>
-    <!-- favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
-    <!-- enlace a css -->
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <header>
-        <div class="logo">
+        <a class="logo" href="index.html">
             <img src="assets/images/apple-logo.png" alt="Apple Logo">
-        </div>
-        <!-- barra de busqueda -->
+        </a>
         <div class="search-bar">
             <input id="search" type="text" placeholder="Buscar productos">
         </div>
     </header>
 
+    <div class="apple-banner">
+        <img src="assets/images/iphone-background.png" alt="iPhone Background">
+        <div class="banner-content">
+            <h1>iPhone 15 Pro</h1>
+            <p>Titanium. So strong. So light. So Pro.</p>
+        </div>
+    </div>
+
+    <div class="apple-categories">
+        <div class="category">
+            <img src="assets/images/airpods-icon.png" alt="AirPods">
+            <h3>AirPods</h3>
+        </div>
+        <div class="category">
+            <img src="assets/images/mac-icon.png" alt="Mac">
+            <h3>Mac</h3>
+        </div>
+        <div class="category">
+            <img src="assets/images/iphone-icon.png" alt="iPhone">
+            <h3>iPhone</h3>
+        </div>
+        <div class="category">
+            <img src="assets/images/watch-icon.png" alt="Watch">
+            <h3>Watch</h3>
+        </div>
+    </div>
+
     <main>
         <div id="notification-container"></div>
         <div class="products" id="products-container">
-            <!-- productos se cargarán dinámicamente aquí -->
+            <!-- Productos se cargarán dinámicamente aquí -->
         </div>
         <div class="cart" id="cart">
             <h2>Carrito de Compras</h2>
             <ul id="cart-items">
-                <!-- elementos del carrito se mostrarán aquí -->
+                <!-- Elementos del carrito se mostrarán aquí -->
             </ul>
-            <p id="cart-total">Total del carrito: $0</p> <!-- total del carrito se mostrará aquí -->
+            <p id="cart-total">Total del carrito: $0</p>
+            <!-- Total del carrito se mostrará aquí -->
         </div>
     </main>
 
