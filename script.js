@@ -27,16 +27,38 @@ function displayProducts(products) {
     productsContainer.innerHTML = '';
 
     products.forEach(product => {
-        const productElement = document.createElement('div');
-        productElement.classList.add('product');
-        productElement.innerHTML = `
-            <h3>${product.name}</h3>
-            <p>Precio: $${product.price}</p>
-            <img src="${product.image}" alt="${product.name}">
-            <button onclick="addToCart(${product.id})">Agregar al Carrito</button>
-        `;
+        const productElement = createProductElement(product);
         productsContainer.appendChild(productElement);
     });
+}
+
+// Función para crear un elemento de producto
+function createProductElement(product) {
+    const productElement = document.createElement('div');
+    productElement.classList.add('product');
+    productElement.innerHTML = `
+        <h3>${product.name}</h3>
+        <p>Precio: $${product.price}</p>
+        <img src="${product.image}" alt="${product.name}">
+        <button class="cssbuttons-io-button" onclick="addToCart(${product.id})">
+            Agregar al Carrito
+            <div class="icon">
+                <svg
+                height="24"
+                width="24"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                >
+                <path d="M0 0h24v24H0z" fill="none"></path>
+                <path
+                    d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                    fill="currentColor"
+                ></path>
+                </svg>
+            </div>
+        </button>
+    `;
+    return productElement;
 }
 
 // Carga inicial de productos
@@ -131,16 +153,37 @@ function updateCartDisplay() {
     let total = 0;
 
     cartItems.forEach(item => {
-        const cartItem = document.createElement('li');
-        cartItem.innerHTML = `
-            ${item.name} (X${item.quantity}) - $${item.price}
-            <button onclick="removeFromCart(${item.id})">Eliminar</button>
-        `;
+        const cartItem = createCartItemElement(item);
         cartList.appendChild(cartItem);
         total += item.price * item.quantity;
     });
 
     cartTotal.textContent = `Total del carrito: $${total}`;
+}
+
+// Función para crear un elemento de producto en el carrito
+function createCartItemElement(item) {
+    const cartItem = document.createElement('li');
+    cartItem.classList.add('cart-item');
+
+    const productImage = document.createElement('img');
+    productImage.src = item.image;
+    productImage.alt = item.name;
+    cartItem.appendChild(productImage);
+
+    const productDetails = document.createElement('div');
+    productDetails.classList.add('product-details');
+    productDetails.innerHTML = `
+        <p>${item.name} (X${item.quantity}) - $${item.price}</p>
+    `;
+    cartItem.appendChild(productDetails);
+
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'Eliminar';
+    removeButton.onclick = () => removeFromCart(item.id);
+    cartItem.appendChild(removeButton);
+
+    return cartItem;
 }
 
 // Event listener para búsqueda
@@ -149,4 +192,5 @@ searchInput.addEventListener('input', searchProducts);
 
 // Carga inicial del carrito y actualización de carrito
 updateCartDisplay();
+
 

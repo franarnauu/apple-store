@@ -5,64 +5,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apple</title>
+    <!-- favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="styles.css">
+    <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <!-- boostrap link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- link a css -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <header>
+        <!-- contenedor de la imagen con el logo de apple -->
         <a class="logo" href="index.html">
             <img src="assets/images/apple-logo.png" alt="Apple Logo">
         </a>
+        <!-- barra de busqueda -->
         <div class="search-bar">
             <input id="search" type="text" placeholder="Buscar productos">
         </div>
+        <!-- boton para desplegar el carrito -->
+        <button class="btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+            aria-controls="offcanvasRight">Carrito</button>
     </header>
-
-    <div class="apple-banner">
+    <!-- banner de apple -->
+    <section class="apple-banner">
         <img src="assets/images/iphone-background.png" alt="iPhone Background">
         <div class="banner-content">
             <h1>iPhone 15 Pro</h1>
             <p>Titanium. So strong. So light. So Pro.</p>
         </div>
-    </div>
-
-    <div class="apple-categories">
-        <div class="category">
+    </section>
+    <!-- categorias de la pagina -->
+    <section class="apple-categories">
+        <h2>Categorías</h2>
+        <div class="category" id="airpods">
             <img src="assets/images/airpods-icon.png" alt="AirPods">
             <h3>AirPods</h3>
         </div>
-        <div class="category">
+        <div class="category" id="mac">
             <img src="assets/images/mac-icon.png" alt="Mac">
             <h3>Mac</h3>
         </div>
-        <div class="category">
+        <div class="category" id="iphone">
             <img src="assets/images/iphone-icon.png" alt="iPhone">
             <h3>iPhone</h3>
         </div>
-        <div class="category">
+        <div class="category" id="watch">
             <img src="assets/images/watch-icon.png" alt="Watch">
             <h3>Watch</h3>
         </div>
-    </div>
-
+    </section>
+    <!-- contenedor de la notificacion de carrito -->
     <main>
         <div id="notification-container"></div>
-        <div class="products" id="products-container">
-            <!-- Productos se cargarán dinámicamente aquí -->
-        </div>
-        <div class="cart" id="cart">
-            <h2>Carrito de Compras</h2>
-            <ul id="cart-items">
-                <!-- Elementos del carrito se mostrarán aquí -->
-            </ul>
-            <p id="cart-total">Total del carrito: $0</p>
-            <!-- Total del carrito se mostrará aquí -->
+        <h2>Nuestros Productos</h2>
+        <!-- contenedor de los productos -->
+        <div class="products" id="products-container"></div>
+        <!-- offcanvas del carrito -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasRightLabel">Carrito de Compras</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul id="cart-items"></ul>
+                <p id="cart-total">Total del carrito: $0</p>
+            </div>
         </div>
     </main>
-
+    <!-- link al javascript -->
     <script src="script.js"></script>
+    <!-- script de bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
