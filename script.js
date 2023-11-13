@@ -1,20 +1,3 @@
-// Datos de productos en formato JSON
-const productsData = [
-    { id: 1, name: 'iPhone 15', price: 1199, image: 'assets/images/iphone15.webp' },
-    { id: 2, name: 'iPhone 15 Pro', price: 1399, image: 'assets/images/iphone15_pro.webp' },
-    { id: 3, name: 'iPhone 14', price: 1099, image: 'assets/images/iphone14.webp' },
-    { id: 4, name: 'iPhone 14 Plus', price: 1199, image: 'assets/images/iphone14_plus.webp' },
-    { id: 5, name: 'iPhone 14 Pro', price: 1299, image: 'assets/images/iphone14_pro.webp' },
-    { id: 6, name: 'iPhone 12', price: 699, image: 'assets/images/iphone12.webp' },
-    { id: 7, name: 'iPhone 12 mini', price: 699, image: 'assets/images/iphone12_mini.webp' },
-    { id: 8, name: 'iPhone 12 Pro', price: 999, image: 'assets/images/iphone12_pro.webp' },
-    { id: 9, name: 'MacBook Air', price: 999, image: 'assets/images/macbook_air.webp' },
-    { id: 10, name: 'MacBook Pro', price: 1299, image: 'assets/images/macbook_pro.webp' },
-    { id: 11, name: 'iPad Pro', price: 799, image: 'assets/images/ipad_pro.webp' },
-    { id: 12, name: 'AirPods Max', price: 899, image: 'assets/images/airpods_max.webp' },
-    { id: 13, name: 'AirPods Pro (2ª generación)', price: 299, image: 'assets/images/airpods_pro.webp' }
-];
-
 // Agregar el contenedor de notificaciones al cuerpo del documento
 const body = document.querySelector('body');
 const notificationContainer = document.createElement('div');
@@ -61,8 +44,17 @@ function createProductElement(product) {
     return productElement;
 }
 
-// Carga inicial de productos
-displayProducts(productsData);
+// Función para cargar los productos de forma asíncrona
+async function loadProducts() {
+    try {
+        const response = await fetch('data.json');
+        const data = await response.json();
+        window.productsData = data;
+        displayProducts(data);
+    } catch (error) {
+        console.error('Error al obtener los productos:', error);
+    }
+}
 
 // Función para buscar productos
 function searchProducts() {
@@ -191,6 +183,7 @@ const searchInput = document.getElementById('search');
 searchInput.addEventListener('input', searchProducts);
 
 // Carga inicial del carrito y actualización de carrito
+loadProducts();
 updateCartDisplay();
 
 
